@@ -23,7 +23,10 @@ import { NotificationsService as NotificationsServiceAbstraction } from "@bitwar
 import { OrganizationService as OrganizationServiceAbstraction } from "@bitwarden/common/abstractions/organization.service";
 import { PasswordGenerationService as PasswordGenerationServiceAbstraction } from "@bitwarden/common/abstractions/passwordGeneration.service";
 import { PasswordRepromptService as PasswordRepromptServiceAbstraction } from "@bitwarden/common/abstractions/passwordReprompt.service";
-import { PlatformUtilsService as PlatformUtilsServiceAbstraction } from "@bitwarden/common/abstractions/platformUtils.service";
+import {
+  PlatformUtilsService,
+  PlatformUtilsService as PlatformUtilsServiceAbstraction,
+} from "@bitwarden/common/abstractions/platformUtils.service";
 import { PolicyService as PolicyServiceAbstraction } from "@bitwarden/common/abstractions/policy.service";
 import { ProviderService as ProviderServiceAbstraction } from "@bitwarden/common/abstractions/provider.service";
 import { SearchService as SearchServiceAbstraction } from "@bitwarden/common/abstractions/search.service";
@@ -178,7 +181,9 @@ export const SYSTEM_LANGUAGE = new InjectionToken<string>("SYSTEM_LANGUAGE");
         injector: Injector,
         logService: LogService,
         stateService: StateServiceAbstraction,
-        encryptWorkerService: AbstractEncryptWorkerService
+        encryptWorkerService: AbstractEncryptWorkerService,
+        platformUtilService: PlatformUtilsService,
+        win: Window
       ) =>
         new CipherService(
           cryptoService,
@@ -189,7 +194,9 @@ export const SYSTEM_LANGUAGE = new InjectionToken<string>("SYSTEM_LANGUAGE");
           () => injector.get(SearchServiceAbstraction),
           logService,
           stateService,
-          encryptWorkerService
+          encryptWorkerService,
+          platformUtilService,
+          win
         ),
       deps: [
         CryptoServiceAbstraction,
@@ -201,6 +208,8 @@ export const SYSTEM_LANGUAGE = new InjectionToken<string>("SYSTEM_LANGUAGE");
         LogService,
         StateServiceAbstraction,
         AbstractEncryptWorkerService,
+        PlatformUtilsService,
+        WINDOW,
       ],
     },
     {

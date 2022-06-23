@@ -3,12 +3,14 @@ import { ITreeNodeObject } from "../domain/treeNode";
 
 import { View } from "./view";
 
-export class FolderView implements View, ITreeNodeObject {
+export class FolderView extends View implements ITreeNodeObject {
   id: string = null;
   name: string = null;
   revisionDate: Date = null;
 
   constructor(f?: Folder) {
+    super();
+
     if (!f) {
       return;
     }

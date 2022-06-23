@@ -4,7 +4,7 @@ import { Field } from "../domain/field";
 
 import { View } from "./view";
 
-export class FieldView implements View {
+export class FieldView extends View {
   name: string = null;
   value: string = null;
   type: FieldType = null;
@@ -14,6 +14,8 @@ export class FieldView implements View {
   linkedId: LinkedIdType = null;
 
   constructor(f?: Field) {
+    super();
+
     if (!f) {
       return;
     }

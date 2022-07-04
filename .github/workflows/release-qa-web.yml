@@ -61,9 +61,13 @@ jobs:
 
       - name: Push new ver to cf-pages-qa
         run: |
-          git add .
-          git commit -m "Deploy ${{ github.ref_name }} to QA Cloudflare pages"
-          git push -u origin cf-pages-qa
+          if [ -n "$(git status --porcelain)" ]; then
+            git add .
+            git commit -m "Deploy ${{ github.ref_name }} to QA Cloudflare pages"
+            git push -u origin cf-pages-qa
+          else
+            echo "No changes to commit!";
+          fi
         working-directory: deployment
 
       # - name: Create CloudFlare Pages Deploy PR

@@ -59,21 +59,20 @@ jobs:
           cp -R ../apps/web/build/* .
         working-directory: deployment
 
-      - name: Create cf-pages-qa-deploy branch
+      - name: Push new ver to cf-pages-qa
         run: |
-          git switch -c cf-pages-qa-deploy-${{ github.ref_name }}
           git add .
-          git commit -m "Staging deploy ${{ github.ref_name }}"
-          git push -u origin cf-pages-qa-deploy-${{ github.ref_name }}
+          git commit -m "Deploy ${{ github.ref_name }} to QA Cloudflare pages"
+          git push -u origin cf-pages-qa
         working-directory: deployment
 
-      - name: Create CloudFlare Pages Deploy PR
-        if: ${{ github.event.inputs.release_type != 'Dry Run' }}
-        env:
-          PR_BRANCH: cf-pages-qa-deploy-${{ github.ref_name }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh pr create --title "Deploy ${{ github.ref_name }} to CloudFlare Pages" \
-            --body "Deploying ${{ github.ref_name }}" \
-            --base cf-pages-qa \
-            --head "$PR_BRANCH"
+      # - name: Create CloudFlare Pages Deploy PR
+      #   if: ${{ github.event.inputs.release_type != 'Dry Run' }}
+      #   env:
+      #     PR_BRANCH: cf-pages-qa-deploy-${{ github.ref_name }}
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   run: |
+      #     gh pr create --title "Deploy ${{ github.ref_name }} to QA CloudFlare Pages" \
+      #       --body "Deploying ${{ github.ref_name }}" \
+      #       --base cf-pages-qa \
+      #       --head "$PR_BRANCH"

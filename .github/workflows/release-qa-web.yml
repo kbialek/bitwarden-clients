@@ -3,67 +3,77 @@ name: QA - Web Release
 
 on:
   workflow_dispatch:
-    inputs:
-      image_extension:
-        description: "Image tag extension"
-        required: false
-
-env:
-  _QA_CLUSTER_RESOURCE_GROUP: "bw-env-qa"
-  _QA_CLUSTER_NAME: "bw-aks-qa"
-  _QA_K8S_NAMESPACE: "bw-qa"
-  _QA_K8S_APP_NAME: "bw-web"
 
 jobs:
-  deploy:
-    name: Deploy QA Web
+  setup:
+    name: Setup
     runs-on: ubuntu-20.04
+    steps:
+      - name: Branch check
+        run: |
+          if [[ "$GITHUB_REF" != "refs/heads/DEVOPS-843_qa_web_vault_to_cloudflare" ]] && [[ "$GITHUB_REF" != "refs/heads/master" ]] && [[ "$GITHUB_REF" != "refs/heads/rc" ]] && [[ $GITHUB_REF != refs/heads/hotfix-rc/* ]]; then
+            echo "==================================="
+            echo "[!] Can only release from the 'master', 'rc' or 'hotfix-rc/*' branches"
+            echo "==================================="
+            exit 1
+          fi
+
+  cfpages-deploy:
+    name: Deploy Web Vault to QA CloudFlare Pages branch
+    runs-on: ubuntu-20.04
+    needs: setup
     steps:
       - name: Checkout Repo
         uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b  # v3.0.2
 
-      - name: Setup
-        run: export PATH=$PATH:~/work/web/web
-
-      - name: Login to Azure
-        uses: Azure/login@ec3c14589bd3e9312b3cc8c41e6860e258df9010  # v1.1
+      - name: Download latest cloud asset
+        uses: bitwarden/gh-actions/download-artifacts@c1fa8e09871a860862d6bbe36184b06d2c7e35a8
         with:
-          creds: ${{ secrets.AZURE_QA_KV_CREDENTIALS }}
+          workflow: build-web.yml
+          path: apps/web
+          workflow_conclusion: success
+          branch: ${{ github.ref_name }}
+          artifacts: web-*-cloud-COMMERCIAL.zip
 
-      - name: Retrieve secrets
-        id: retrieve-secrets
-        uses: Azure/get-keyvault-secrets@b5c723b9ac7870c022b8c35befe620b7009b336f  # v1
+      # This should result in a build directory in the current working directory
+      - name: Unzip build asset
+        working-directory: apps/web
+        run: unzip web-*-cloud-COMMERCIAL.zip
+
+      - name: Checkout Repo
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b  # v3.0.2
         with:
-          keyvault: "bitwarden-qa-kv"
-          secrets: "qa-aks-kubectl-credentials"
+          ref: cf-pages-qa
+          path: deployment
 
-      - name: Login with qa-aks-kubectl-credentials SP
-        uses: Azure/login@ec3c14589bd3e9312b3cc8c41e6860e258df9010  # v1.1
-        with:
-          creds: ${{ env.qa-aks-kubectl-credentials }}
-
-      - name: Setup AKS access
+      - name: Setup git config
         run: |
-          echo "---az install---"
-          az aks install-cli --install-location ./kubectl --kubelogin-install-location ./kubelogin
-          echo "---az get-creds---"
-          az aks get-credentials -n $_QA_CLUSTER_NAME -g $_QA_CLUSTER_RESOURCE_GROUP
+          git config --global user.name = "GitHub Action Bot"
+          git config --global user.email = "<>"
+          git config --global url."https://github.com/".insteadOf ssh://git@github.com/
+          git config --global url."https://".insteadOf ssh://
 
-      - name: Get image tag
-        id: image_tag
+      - name: Deploy CloudFlare Pages
         run: |
-          IMAGE_TAG=$(echo "${GITHUB_REF:11}" | sed "s#/#-#g")
-          TAG_EXTENSION=${{ github.event.inputs.image_extension }}
+          rm -rf ./*
+          cp -R ../apps/web/build/* .
+        working-directory: deployment
 
-          if [[ $TAG_EXTENSION ]]; then
-            IMAGE_TAG=$IMAGE_TAG-$TAG_EXTENSION
-          fi
-          echo "::set-output name=value::$IMAGE_TAG"
+      - name: Create cf-pages-qa-deploy branch
+        run: |
+          git switch -c cf-pages-qa-deploy-${{ github.ref_name }}
+          git add .
+          git commit -m "Staging deploy ${{ github.ref_name }}"
+          git push -u origin cf-pages-qa-deploy-${{ github.ref_name }}
+        working-directory: deployment
 
-      - name: Deploy Web image
+      - name: Create CloudFlare Pages Deploy PR
+        if: ${{ github.event.inputs.release_type != 'Dry Run' }}
         env:
-          IMAGE_TAG: ${{ steps.image_tag.outputs.value }}
+          PR_BRANCH: cf-pages-qa-deploy-${{ github.ref_name }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          kubectl set image -n $_QA_K8S_NAMESPACE deployment/web web=bitwardenqa.azurecr.io/web:$IMAGE_TAG --record
-          kubectl rollout restart -n $_QA_K8S_NAMESPACE deployment/web
-          kubectl rollout status deployment/web -n $_QA_K8S_NAMESPACE
+          gh pr create --title "Deploy ${{ github.ref_name }} to CloudFlare Pages" \
+            --body "Deploying ${{ github.ref_name }}" \
+            --base cf-pages-qa \
+            --head "$PR_BRANCH"

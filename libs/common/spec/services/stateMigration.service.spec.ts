@@ -1,6 +1,6 @@
 import { Arg, Substitute, SubstituteOf } from "@fluffy-spoon/substitute";
 
-import { StorageService } from "@bitwarden/common/abstractions/storage.service";
+import { AbstractStorageService } from "@bitwarden/common/abstractions/storage.service";
 import { StateVersion } from "@bitwarden/common/enums/stateVersion";
 import { StateFactory } from "@bitwarden/common/factories/stateFactory";
 import { EncryptedOrganizationKeyData } from "@bitwarden/common/models/data/encryptedOrganizationKeyData";
@@ -14,15 +14,15 @@ const userId = "USER_ID";
 // so that we don't accidentally run all following migrations as well
 
 describe("State Migration Service", () => {
-  let storageService: SubstituteOf<StorageService>;
-  let secureStorageService: SubstituteOf<StorageService>;
+  let storageService: SubstituteOf<AbstractStorageService>;
+  let secureStorageService: SubstituteOf<AbstractStorageService>;
   let stateFactory: SubstituteOf<StateFactory>;
 
   let stateMigrationService: StateMigrationService;
 
   beforeEach(() => {
-    storageService = Substitute.for<StorageService>();
-    secureStorageService = Substitute.for<StorageService>();
+    storageService = Substitute.for<AbstractStorageService>();
+    secureStorageService = Substitute.for<AbstractStorageService>();
     stateFactory = Substitute.for<StateFactory>();
 
     stateMigrationService = new StateMigrationService(

@@ -22,12 +22,14 @@
     </div>
   </div>
 
-  <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
-    <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
-    <span>{{ "save" | i18n }}</span>
-  </button>
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
+      <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+      <span>{{ "save" | i18n }}</span>
+    </button>
+  </div>
 
-  <div *ngIf="showScimSettings && endpointUrl">
+  <div class="form-group" *ngIf="showScimSettings && endpointUrl">
     <label for="endpointUrl">{{ "scimUrl" | i18n }}</label>
     <div class="input-group">
       <input
@@ -51,7 +53,7 @@
     </div>
   </div>
 
-  <div *ngIf="showScimSettings && clientSecret">
+  <div class="form-group" *ngIf="showScimSettings && clientSecret">
     <label for="clientSecret">{{ "scimApiKey" | i18n }}</label>
     <div class="input-group">
       <input

@@ -93,6 +93,17 @@ export class ScimComponent implements OnInit {
   }
 
   async rotateScimKey() {
+    const confirmed = await this.platformUtilsService.showDialog(
+      this.i18nService.t("rotateScimKeyWarning"),
+      this.i18nService.t("rotateScimKey"),
+      this.i18nService.t("rotateKey"),
+      this.i18nService.t("cancel"),
+      "warning"
+    );
+    if (!confirmed) {
+      return false;
+    }
+
     const request = new OrganizationApiKeyRequest();
     request.type = OrganizationApiKeyType.Scim;
     request.masterPasswordHash = "N/A";
@@ -119,7 +130,7 @@ export class ScimComponent implements OnInit {
         this.organizationId,
         OrganizationConnectionType.Scim,
         true,
-        new ScimConfigRequest(this.enabled.value, this.endpointUrl)
+        new ScimConfigRequest(this.enabled.value)
       );
       if (this.existingConnectionId == null) {
         this.formPromise = this.apiService.createOrganizationConnection(request, ScimConfigApi);

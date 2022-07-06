@@ -5193,6 +5193,13 @@
     "message": "Rotate the SCIM API Key",
     "description": "the text, 'SCIM' and 'API', are acronymns and should not be translated."
   },
+  "rotateScimKeyWarning": {
+    "message": "Are you sure you want to rotate the SCIM API Key? The current key will no longer work for any existing integrations.",
+    "description": "the text, 'SCIM' and 'API', are acronymns and should not be translated."
+  },
+  "rotateKey": {
+    "message": "Rotate Key"
+  },
   "scimApiKey": {
     "message": "SCIM API Key",
     "description": "the text, 'SCIM' and 'API', are acronymns and should not be translated."

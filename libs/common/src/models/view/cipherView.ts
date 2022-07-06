@@ -12,7 +12,7 @@ import { PasswordHistoryView } from "./passwordHistoryView";
 import { SecureNoteView } from "./secureNoteView";
 import { View } from "./view";
 
-export class CipherView implements View {
+export class CipherView extends View {
   id: string = null;
   organizationId: string = null;
   folderId: string = null;
@@ -37,6 +37,8 @@ export class CipherView implements View {
   reprompt: CipherRepromptType = CipherRepromptType.None;
 
   constructor(c?: Cipher) {
+    super();
+
     if (!c) {
       return;
     }

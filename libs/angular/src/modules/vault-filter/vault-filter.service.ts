@@ -61,9 +61,7 @@ export class VaultFilterService {
     const storedCollections = await this.collectionService.getAllDecrypted();
     let collections: CollectionView[];
     if (organizationId != null) {
-      collections = storedCollections.filter(
-        (c) => c.organizationId === organizationId || c.organizationId === null
-      );
+      collections = storedCollections.filter((c) => c.organizationId === organizationId);
     } else {
       collections = storedCollections;
     }

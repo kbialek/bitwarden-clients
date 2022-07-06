@@ -73,6 +73,7 @@ export class VaultFilterService extends BaseVaultFilterService {
 
     const noneCollection = new CollectionView();
     noneCollection.name = this.i18nService.t("unassigned");
+    noneCollection.organizationId = organizationId;
     result.push(noneCollection);
 
     const nestedCollections = await this.collectionService.getAllNested(result);

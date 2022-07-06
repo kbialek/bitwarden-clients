@@ -87,12 +87,12 @@ export class OrganizationPlansComponent implements OnInit {
       const plans = await this.apiService.getPlans();
       this.plans = plans.data;
       if (this.product === ProductType.Enterprise || this.product === ProductType.Teams) {
-        this.formGroup.get("businessOwned")?.setValue(true);
+        this.formGroup.controls.businessOwned.setValue(true);
       }
     }
 
     if (this.providerId) {
-      this.formGroup.get("businessOwned")?.setValue(true);
+      this.formGroup.controls.businessOwned.setValue(true);
       this.changedOwnedBusiness();
     }
 
@@ -104,7 +104,7 @@ export class OrganizationPlansComponent implements OnInit {
   }
 
   get selectedPlan() {
-    return this.plans.find((plan) => plan.type === this.formGroup.get("plan")?.value);
+    return this.plans.find((plan) => plan.type === this.formGroup.controls.plan.value);
   }
 
   get selectedPlanInterval() {
@@ -114,7 +114,7 @@ export class OrganizationPlansComponent implements OnInit {
   get selectableProducts() {
     let validPlans = this.plans.filter((plan) => plan.type !== PlanType.Custom);
 
-    if (this.formGroup.get("businessOwned")?.value) {
+    if (this.formGroup.controls.businessOwned.value) {
       validPlans = validPlans.filter((plan) => plan.canBeUsedByBusiness);
     }
 
@@ -141,7 +141,7 @@ export class OrganizationPlansComponent implements OnInit {
   get selectablePlans() {
     return this.plans.filter(
       (plan) =>
-        !plan.legacyYear && !plan.disabled && plan.product === this.formGroup.get("product")?.value
+        !plan.legacyYear && !plan.disabled && plan.product === this.formGroup.controls.product.value
     );
   }
 
@@ -166,7 +166,7 @@ export class OrganizationPlansComponent implements OnInit {
 
     return (
       plan.additionalStoragePricePerGb *
-      Math.abs(this.formGroup.get("additionalStorage")?.value || 0)
+      Math.abs(this.formGroup.controls.additionalStorage.value || 0)
     );
   }
 
@@ -175,26 +175,26 @@ export class OrganizationPlansComponent implements OnInit {
       return 0;
     }
 
-    return plan.seatPrice * Math.abs(this.formGroup.get("additionalSeats")?.value || 0);
+    return plan.seatPrice * Math.abs(this.formGroup.controls.additionalSeats.value || 0);
   }
 
   get subtotal() {
     let subTotal = this.selectedPlan.basePrice;
     if (
       this.selectedPlan.hasAdditionalSeatsOption &&
-      this.formGroup.get("additionalSeats")?.value
+      this.formGroup.controls.additionalSeats.value
     ) {
       subTotal += this.seatTotal(this.selectedPlan);
     }
     if (
       this.selectedPlan.hasAdditionalStorageOption &&
-      this.formGroup.get("additionalStorage")?.value
+      this.formGroup.controls.additionalStorage.value
     ) {
       subTotal += this.additionalStorageTotal(this.selectedPlan);
     }
     if (
       this.selectedPlan.hasPremiumAccessOption &&
-      this.formGroup.get("premiumAccessAddon")?.value
+      this.formGroup.controls.premiumAccessAddon.value
     ) {
       subTotal += this.selectedPlan.premiumAccessOptionPrice;
     }
@@ -226,30 +226,30 @@ export class OrganizationPlansComponent implements OnInit {
   }
 
   changedProduct() {
-    this.formGroup.controls["plan"].setValue(this.selectablePlans[0].type);
+    this.formGroup.controls.plan.setValue(this.selectablePlans[0].type);
     if (!this.selectedPlan.hasPremiumAccessOption) {
-      this.formGroup.controls["premiumAccessAddon"].setValue(false);
+      this.formGroup.controls.premiumAccessAddon.setValue(false);
     }
     if (!this.selectedPlan.hasAdditionalStorageOption) {
-      this.formGroup.controls["additionalStorage"].setValue(0);
+      this.formGroup.controls.additionalStorage.setValue(0);
     }
     if (!this.selectedPlan.hasAdditionalSeatsOption) {
-      this.formGroup.controls["additionalSeats"].setValue(0);
+      this.formGroup.controls.additionalSeats.setValue(0);
     } else if (
-      !this.formGroup.controls["additionalSeats"].value &&
+      !this.formGroup.controls.additionalSeats.value &&
       !this.selectedPlan.baseSeats &&
       this.selectedPlan.hasAdditionalSeatsOption
     ) {
-      this.formGroup.controls["additionalSeats"].setValue(1);
+      this.formGroup.controls.additionalSeats.setValue(1);
     }
   }
 
   changedOwnedBusiness() {
-    if (!this.formGroup.get("businessOwned")?.value || this.selectedPlan.canBeUsedByBusiness) {
+    if (!this.formGroup.controls.businessOwned.value || this.selectedPlan.canBeUsedByBusiness) {
       return;
     }
-    this.formGroup.get("product")?.setValue(ProductType.Teams);
-    this.formGroup.get("plan")?.setValue(PlanType.TeamsAnnually);
+    this.formGroup.controls.product.setValue(ProductType.Teams);
+    this.formGroup.controls.plan.setValue(PlanType.TeamsAnnually);
   }
 
   changedCountry() {
@@ -332,13 +332,13 @@ export class OrganizationPlansComponent implements OnInit {
 
   private async updateOrganization(orgId: string) {
     const request = new OrganizationUpgradeRequest();
-    request.businessName = this.formGroup.get("businessOwned")?.value
-      ? this.formGroup.get("businessName")?.value
+    request.businessName = this.formGroup.controls.businessOwned.value
+      ? this.formGroup.controls.businessName.value
       : null;
-    request.additionalSeats = this.formGroup.get("additionalSeats")?.value;
-    request.additionalStorageGb = this.formGroup.get("additionalStorage")?.value;
+    request.additionalSeats = this.formGroup.controls.additionalSeats.value;
+    request.additionalStorageGb = this.formGroup.controls.additionalStorage.value;
     request.premiumAccessAddon =
-      this.selectedPlan.hasPremiumAccessOption && this.formGroup.get("premiumAccessAddon")?.value;
+      this.selectedPlan.hasPremiumAccessOption && this.formGroup.controls.premiumAccessAddon.value;
     request.planType = this.selectedPlan.type;
     request.billingAddressCountry = this.taxComponent.taxInfo.country;
     request.billingAddressPostalCode = this.taxComponent.taxInfo.postalCode;
@@ -367,8 +367,8 @@ export class OrganizationPlansComponent implements OnInit {
     const request = new OrganizationCreateRequest();
     request.key = key;
     request.collectionName = collectionCt;
-    request.name = this.formGroup.get("name")?.value;
-    request.billingEmail = this.formGroup.get("billingEmail")?.value;
+    request.name = this.formGroup.controls.name.value;
+    request.billingEmail = this.formGroup.controls.billingEmail.value;
     request.keys = new OrganizationKeysRequest(orgKeys[0], orgKeys[1].encryptedString);
 
     if (this.selectedPlan.type === PlanType.Free) {
@@ -378,13 +378,14 @@ export class OrganizationPlansComponent implements OnInit {
 
       request.paymentToken = tokenResult[0];
       request.paymentMethodType = tokenResult[1];
-      request.businessName = this.formGroup.get("businessOwned")?.value
-        ? this.formGroup.get("businessName")?.value
+      request.businessName = this.formGroup.controls.businessOwned.value
+        ? this.formGroup.controls.businessName.value
         : null;
-      request.additionalSeats = this.formGroup.get("additionalSeats")?.value;
-      request.additionalStorageGb = this.formGroup.get("additionalStorage")?.value;
+      request.additionalSeats = this.formGroup.controls.additionalSeats.value;
+      request.additionalStorageGb = this.formGroup.controls.additionalStorage.value;
       request.premiumAccessAddon =
-        this.selectedPlan.hasPremiumAccessOption && this.formGroup.get("premiumAccessAddon")?.value;
+        this.selectedPlan.hasPremiumAccessOption &&
+        this.formGroup.controls.premiumAccessAddon.value;
       request.planType = this.selectedPlan.type;
       request.billingAddressPostalCode = this.taxComponent.taxInfo.postalCode;
       request.billingAddressCountry = this.taxComponent.taxInfo.country;
@@ -399,7 +400,7 @@ export class OrganizationPlansComponent implements OnInit {
 
     if (this.providerId) {
       const providerRequest = new ProviderOrganizationCreateRequest(
-        this.formGroup.get("clientOwnerEmail")?.value,
+        this.formGroup.controls.clientOwnerEmail.value,
         request
       );
       const providerKey = await this.cryptoService.getProviderKey(this.providerId);

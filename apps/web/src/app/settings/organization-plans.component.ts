@@ -226,21 +226,21 @@ export class OrganizationPlansComponent implements OnInit {
   }
 
   changedProduct() {
-    this.formGroup.get("plan")?.setValue(this.selectablePlans[0].type);
+    this.formGroup.controls["plan"]?.setValue(this.selectablePlans[0].type);
     if (!this.selectedPlan.hasPremiumAccessOption) {
-      this.formGroup.get("premiumAccessAddon")?.setValue(false);
+      this.formGroup.controls["premiumAccessAddon"]?.setValue(false);
     }
     if (!this.selectedPlan.hasAdditionalStorageOption) {
-      this.formGroup.get("additionalStorage")?.setValue(0);
+      this.formGroup.controls["additionalStorage"]?.setValue(0);
     }
     if (!this.selectedPlan.hasAdditionalSeatsOption) {
-      this.formGroup.get("additionalSeats")?.setValue(0);
+      this.formGroup.controls["additionalSeats"]?.setValue(0);
     } else if (
-      !this.formGroup.get("additionalSeats")?.value &&
+      !this.formGroup.controls["additionalSeats"]?.value &&
       !this.selectedPlan.baseSeats &&
       this.selectedPlan.hasAdditionalSeatsOption
     ) {
-      this.formGroup.get("additionalSeats")?.setValue(1);
+      this.formGroup.controls["additionalSeats"]?.setValue(1);
     }
   }
 

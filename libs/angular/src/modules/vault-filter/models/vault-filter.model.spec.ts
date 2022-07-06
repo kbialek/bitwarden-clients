@@ -151,6 +151,16 @@ describe("VaultFilter", () => {
 
         expect(result).toBe(false);
       });
+
+      it("should return false when filtering for my vault only", () => {
+        const filterFunction = createFilterFunction({
+          myVaultOnly: true,
+        });
+
+        const result = filterFunction(cipher);
+
+        expect(result).toBe(false);
+      });
     });
 
     describe("unassigned organizational cipher (with organization, without collection)", () => {

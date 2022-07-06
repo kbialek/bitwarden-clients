@@ -124,7 +124,10 @@ describe("VaultFilter", () => {
       });
 
       it("should return true when filter matches collection id", () => {
-        const filterFunction = createFilterFunction({ selectedCollectionId: "collectionId" });
+        const filterFunction = createFilterFunction({
+          selectedCollection: true,
+          selectedCollectionId: "collectionId",
+        });
 
         const result = filterFunction(cipher);
 

@@ -20,7 +20,7 @@ const CanLaunchWhitelist = [
   "androidapp://",
 ];
 
-export class LoginUriView extends View {
+export class LoginUriView implements View {
   match: UriMatchType = null;
 
   private _uri: string = null;
@@ -30,8 +30,6 @@ export class LoginUriView extends View {
   private _canLaunch: boolean = null;
 
   constructor(u?: LoginUri) {
-    super();
-
     if (!u) {
       return;
     }

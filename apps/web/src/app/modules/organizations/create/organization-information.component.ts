@@ -5,26 +5,10 @@ import { FormBuilder, Validators, FormGroup } from "@angular/forms";
   selector: "app-org-info",
   templateUrl: "organization-information.component.html",
 })
-export class OrganizationInformationComponent implements OnInit {
+export class OrganizationInformationComponent {
   @Input() nameOnly = false;
-  @Output() valueChange = new EventEmitter<FormGroup>();
-
-  formData = this.formBuilder.group({
-    name: ["", [Validators.required]],
-  });
+  @Input() formGroup: FormGroup;
+  @Output() changedBusinessOwned = new EventEmitter<void>();
 
   constructor(private formBuilder: FormBuilder) {}
-  ngOnInit() {
-    if (!this.nameOnly) {
-      this.formData = this.formBuilder.group({
-        name: ["", [Validators.required]],
-        billingEmail: ["", [Validators.required, Validators.email]],
-        businessOwned: [false],
-      });
-    }
-
-    this.formData.valueChanges.subscribe(() => {
-      this.valueChange.emit(this.formData);
-    });
-  }
 }

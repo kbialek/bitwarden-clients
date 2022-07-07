@@ -1,5 +1,5 @@
 import { ApiService } from "@bitwarden/common/abstractions/api.service";
-import { FolderStateService } from "@bitwarden/common/abstractions/folder/folder-state.service.abstraction";
+import { InternalFolderStateService } from "@bitwarden/common/abstractions/folder/folder-state.service.abstraction";
 import { FolderServiceAbstraction } from "@bitwarden/common/abstractions/folder/folder.service.abstraction";
 import { FolderData } from "@bitwarden/common/models/data/folderData";
 import { Folder } from "@bitwarden/common/models/domain/folder";
@@ -7,7 +7,7 @@ import { FolderRequest } from "@bitwarden/common/models/request/folderRequest";
 import { FolderResponse } from "@bitwarden/common/models/response/folderResponse";
 
 export class FolderService implements FolderServiceAbstraction {
-  constructor(private folderService: FolderStateService, private apiService: ApiService) {}
+  constructor(private folderService: InternalFolderStateService, private apiService: ApiService) {}
 
   async save(folder: Folder): Promise<any> {
     const request = new FolderRequest(folder);

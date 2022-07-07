@@ -10,7 +10,7 @@ import { EnvironmentService as EnvironmentServiceAbstraction } from "@bitwarden/
 import { EventService as EventServiceAbstraction } from "@bitwarden/common/abstractions/event.service";
 import { ExportService as ExportServiceAbstraction } from "@bitwarden/common/abstractions/export.service";
 import { FileUploadService as FileUploadServiceAbstraction } from "@bitwarden/common/abstractions/fileUpload.service";
-import { FolderStateService as FolderStateServiceAbstraction } from "@bitwarden/common/abstractions/folder/folder-state.service.abstraction";
+import { InternalFolderStateService as InternalFolderStateServiceAbstraction } from "@bitwarden/common/abstractions/folder/folder-state.service.abstraction";
 import { I18nService as I18nServiceAbstraction } from "@bitwarden/common/abstractions/i18n.service";
 import { KeyConnectorService as KeyConnectorServiceAbstraction } from "@bitwarden/common/abstractions/keyConnector.service";
 import { LogService as LogServiceAbstraction } from "@bitwarden/common/abstractions/log.service";
@@ -118,7 +118,7 @@ export default class MainBackground {
   environmentService: EnvironmentServiceAbstraction;
   settingsService: SettingsServiceAbstraction;
   cipherService: CipherServiceAbstraction;
-  folderStateService: FolderStateServiceAbstraction;
+  folderStateService: InternalFolderStateServiceAbstraction;
   collectionService: CollectionServiceAbstraction;
   vaultTimeoutService: VaultTimeoutServiceAbstraction;
   syncService: SyncServiceAbstraction;

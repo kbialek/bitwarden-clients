@@ -16,7 +16,10 @@ import { EnvironmentService as EnvironmentServiceAbstraction } from "@bitwarden/
 import { EventService as EventServiceAbstraction } from "@bitwarden/common/abstractions/event.service";
 import { ExportService as ExportServiceAbstraction } from "@bitwarden/common/abstractions/export.service";
 import { FileUploadService as FileUploadServiceAbstraction } from "@bitwarden/common/abstractions/fileUpload.service";
-import { FolderStateService as FolderStateServiceAbstraction } from "@bitwarden/common/abstractions/folder/folder-state.service.abstraction";
+import {
+  FolderStateService as FolderStateServiceAbstraction,
+  InternalFolderStateService,
+} from "@bitwarden/common/abstractions/folder/folder-state.service.abstraction";
 import { FolderServiceAbstraction } from "@bitwarden/common/abstractions/folder/folder.service.abstraction";
 import { FormValidationErrorsService as FormValidationErrorsServiceAbstraction } from "@bitwarden/common/abstractions/formValidationErrors.service";
 import { I18nService as I18nServiceAbstraction } from "@bitwarden/common/abstractions/i18n.service";
@@ -221,6 +224,10 @@ export const LOG_MAC_FAILURES = new InjectionToken<string>("LOG_MAC_FAILURES");
         CipherServiceAbstraction,
         StateServiceAbstraction,
       ],
+    },
+    {
+      provide: InternalFolderStateService,
+      useExisting: FolderStateServiceAbstraction,
     },
     {
       provide: FolderServiceAbstraction,

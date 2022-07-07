@@ -2,7 +2,7 @@ import { ApiService } from "../abstractions/api.service";
 import { CipherService } from "../abstractions/cipher.service";
 import { CollectionService } from "../abstractions/collection.service";
 import { CryptoService } from "../abstractions/crypto.service";
-import { FolderStateService } from "../abstractions/folder/folder-state.service.abstraction";
+import { InternalFolderStateService } from "../abstractions/folder/folder-state.service.abstraction";
 import { KeyConnectorService } from "../abstractions/keyConnector.service";
 import { LogService } from "../abstractions/log.service";
 import { MessagingService } from "../abstractions/messaging.service";
@@ -40,7 +40,7 @@ export class SyncService implements SyncServiceAbstraction {
   constructor(
     private apiService: ApiService,
     private settingsService: SettingsService,
-    private folderStateService: FolderStateService,
+    private folderStateService: InternalFolderStateService,
     private cipherService: CipherService,
     private cryptoService: CryptoService,
     private collectionService: CollectionService,

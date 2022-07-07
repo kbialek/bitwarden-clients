@@ -12,6 +12,9 @@ export abstract class FolderStateService {
   getAllDecrypted: () => Promise<FolderView[]>;
   getAllNested: (folders?: FolderView[]) => Promise<TreeNode<FolderView>[]>;
   getNested: (id: string) => Promise<TreeNode<FolderView>>;
+}
+
+export abstract class InternalFolderStateService extends FolderStateService {
   upsert: (folder: FolderData | FolderData[]) => Promise<any>;
   replace: (folders: { [id: string]: FolderData }) => Promise<any>;
   clear: (userId: string) => Promise<any>;

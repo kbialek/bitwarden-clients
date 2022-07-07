@@ -494,20 +494,6 @@ export class ApiService implements ApiServiceAbstraction {
     return new FolderResponse(r);
   }
 
-  async postFolder(request: FolderRequest): Promise<FolderResponse> {
-    const r = await this.send("POST", "/folders", request, true, true);
-    return new FolderResponse(r);
-  }
-
-  async putFolder(id: string, request: FolderRequest): Promise<FolderResponse> {
-    const r = await this.send("PUT", "/folders/" + id, request, true, true);
-    return new FolderResponse(r);
-  }
-
-  deleteFolder(id: string): Promise<any> {
-    return this.send("DELETE", "/folders/" + id, null, true, false);
-  }
-
   // Send APIs
 
   async getSend(id: string): Promise<SendResponse> {
@@ -2566,7 +2552,7 @@ export class ApiService implements ApiServiceAbstraction {
     await this.tokenService.setToken(response.accessToken);
   }
 
-  private async send(
+  async send(
     method: "GET" | "POST" | "PUT" | "DELETE",
     path: string,
     body: any,

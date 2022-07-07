@@ -4,6 +4,7 @@ import * as path from "path";
 import * as program from "commander";
 import * as jsdom from "jsdom";
 
+import { InternalFolderStateService } from "@bitwarden/common/abstractions/folder/folder-state.service.abstraction";
 import { ClientType } from "@bitwarden/common/enums/clientType";
 import { KeySuffixOptions } from "@bitwarden/common/enums/keySuffixOptions";
 import { LogLevelType } from "@bitwarden/common/enums/logLevelType";
@@ -74,7 +75,7 @@ export class Main {
   environmentService: EnvironmentService;
   settingsService: SettingsService;
   cipherService: CipherService;
-  folderStateService: FolderStateService;
+  folderStateService: InternalFolderStateService;
   collectionService: CollectionService;
   vaultTimeoutService: VaultTimeoutService;
   syncService: SyncService;

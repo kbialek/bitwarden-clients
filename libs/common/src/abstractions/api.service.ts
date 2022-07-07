@@ -182,6 +182,16 @@ import { UserKeyResponse } from "../models/response/userKeyResponse";
 import { SendAccessView } from "../models/view/sendAccessView";
 
 export abstract class ApiService {
+  send: (
+    method: "GET" | "POST" | "PUT" | "DELETE",
+    path: string,
+    body: any,
+    authed: boolean,
+    hasResponse: boolean,
+    apiUrl?: string,
+    alterHeaders?: (headers: Headers) => void
+  ) => Promise<any>;
+
   postIdentityToken: (
     request: PasswordTokenRequest | SsoTokenRequest | ApiTokenRequest
   ) => Promise<IdentityTokenResponse | IdentityTwoFactorResponse | IdentityCaptchaResponse>;
@@ -229,9 +239,6 @@ export abstract class ApiService {
   getUserBillingPayment: () => Promise<BillingPaymentResponse>;
 
   getFolder: (id: string) => Promise<FolderResponse>;
-  postFolder: (request: FolderRequest) => Promise<FolderResponse>;
-  putFolder: (id: string, request: FolderRequest) => Promise<FolderResponse>;
-  deleteFolder: (id: string) => Promise<any>;
 
   getSend: (id: string) => Promise<SendResponse>;
   postSendAccess: (

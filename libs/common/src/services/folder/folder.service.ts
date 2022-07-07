@@ -14,10 +14,10 @@ export class FolderService implements FolderServiceAbstraction {
 
     let response: FolderResponse;
     if (folder.id == null) {
-      response = await this.apiService.postFolder(request);
+      response = await this.postFolder(request);
       folder.id = response.id;
     } else {
-      response = await this.apiService.putFolder(folder.id, request);
+      response = await this.putFolder(folder.id, request);
     }
 
     const data = new FolderData(response);
@@ -25,7 +25,21 @@ export class FolderService implements FolderServiceAbstraction {
   }
 
   async delete(id: string): Promise<any> {
-    await this.apiService.deleteFolder(id);
+    await this.deleteFolder(id);
     await this.folderService.delete(id);
+  }
+
+  private async postFolder(request: FolderRequest): Promise<FolderResponse> {
+    const r = await this.apiService.send("POST", "/folders", request, true, true);
+    return new FolderResponse(r);
+  }
+
+  async putFolder(id: string, request: FolderRequest): Promise<FolderResponse> {
+    const r = await this.apiService.send("PUT", "/folders/" + id, request, true, true);
+    return new FolderResponse(r);
+  }
+
+  private deleteFolder(id: string): Promise<any> {
+    return this.apiService.send("DELETE", "/folders/" + id, null, true, false);
   }
 }

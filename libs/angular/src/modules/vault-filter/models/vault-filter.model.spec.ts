@@ -16,7 +16,7 @@ describe("VaultFilter", () => {
       });
     });
 
-    describe("favorite cipher", () => {
+    describe("given a favorite cipher", () => {
       const cipher = createCipher({ favorite: true });
 
       it("should return true when filtering for favorites", () => {
@@ -36,7 +36,7 @@ describe("VaultFilter", () => {
       });
     });
 
-    describe("deleted cipher", () => {
+    describe("given a deleted cipher", () => {
       const cipher = createCipher({ deletedDate: new Date() });
 
       it("should return true when filtering for trash", () => {
@@ -56,7 +56,7 @@ describe("VaultFilter", () => {
       });
     });
 
-    describe("cipher with type", () => {
+    describe("given a cipher with type", () => {
       it("should return true when filter matches cipher type", () => {
         const cipher = createCipher({ type: CipherType.Identity });
         const filterFunction = createFilterFunction({ cipherType: CipherType.Identity });
@@ -76,7 +76,7 @@ describe("VaultFilter", () => {
       });
     });
 
-    describe("cipher with folder id", () => {
+    describe("given a cipher with folder id", () => {
       it("should return true when filter matches folder id", () => {
         const cipher = createCipher({ folderId: "folderId" });
         const filterFunction = createFilterFunction({
@@ -102,7 +102,7 @@ describe("VaultFilter", () => {
       });
     });
 
-    describe("cipher without folder", () => {
+    describe("given a cipher without folder", () => {
       const cipher = createCipher({ folderId: undefined });
 
       it("should return true when filtering on unassigned folder", () => {
@@ -117,7 +117,7 @@ describe("VaultFilter", () => {
       });
     });
 
-    describe("organizational cipher (with organization and collections)", () => {
+    describe("given an organizational cipher (with organization and collections)", () => {
       const cipher = createCipher({
         organizationId: "organizationId",
         collectionIds: ["collectionId", "anotherId"],
@@ -166,7 +166,7 @@ describe("VaultFilter", () => {
       });
     });
 
-    describe("unassigned organizational cipher (with organization, without collection)", () => {
+    describe("given an unassigned organizational cipher (with organization, without collection)", () => {
       const cipher = createCipher({ organizationId: "organizationId", collectionIds: [] });
 
       it("should return true when filtering for unassigned collection", () => {
@@ -191,7 +191,7 @@ describe("VaultFilter", () => {
       });
     });
 
-    describe("individual cipher (without organization or collection)", () => {
+    describe("given an individual cipher (without organization or collection)", () => {
       const cipher = createCipher({ organizationId: null, collectionIds: [] });
 
       it("should return false when filtering for unassigned collection", () => {

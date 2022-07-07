@@ -176,8 +176,8 @@ export class AuthService implements AuthServiceAbstraction {
       await this.cryptoService.getKey(KeySuffixOptions.Auto, userId);
     }
 
-    const hasKeyInMemory = await this.cryptoService.hasKeyInMemory(userId);
-    if (!hasKeyInMemory) {
+    const hasKey = await this.cryptoService.hasKey();
+    if (!hasKey) {
       return AuthenticationStatus.Locked;
     }
 

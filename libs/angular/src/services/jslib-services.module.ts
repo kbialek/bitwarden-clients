@@ -18,6 +18,7 @@ import { ExportService as ExportServiceAbstraction } from "@bitwarden/common/abs
 import { FileUploadService as FileUploadServiceAbstraction } from "@bitwarden/common/abstractions/fileUpload.service";
 import { FolderStateService as FolderStateServiceAbstraction } from "@bitwarden/common/abstractions/folder/folder-state.service.abstraction";
 import { FolderServiceAbstraction } from "@bitwarden/common/abstractions/folder/folder.service.abstraction";
+import { FormValidationErrorsService as FormValidationErrorsServiceAbstraction } from "@bitwarden/common/abstractions/formValidationErrors.service";
 import { I18nService as I18nServiceAbstraction } from "@bitwarden/common/abstractions/i18n.service";
 import { KeyConnectorService as KeyConnectorServiceAbstraction } from "@bitwarden/common/abstractions/keyConnector.service";
 import { LogService } from "@bitwarden/common/abstractions/log.service";
@@ -60,6 +61,7 @@ import { ExportService } from "@bitwarden/common/services/export.service";
 import { FileUploadService } from "@bitwarden/common/services/fileUpload.service";
 import { FolderStateService } from "@bitwarden/common/services/folder/folder-state.service";
 import { FolderService } from "@bitwarden/common/services/folder/folder.service";
+import { FormValidationErrorsService } from "@bitwarden/common/services/formValidationErrors.service";
 import { KeyConnectorService } from "@bitwarden/common/services/keyConnector.service";
 import { NotificationsService } from "@bitwarden/common/services/notifications.service";
 import { OrganizationService } from "@bitwarden/common/services/organization.service";
@@ -449,6 +451,10 @@ export const LOG_MAC_FAILURES = new InjectionToken<string>("LOG_MAC_FAILURES");
     {
       provide: AbstractThemingService,
       useClass: ThemingService,
+    },
+    {
+      provide: FormValidationErrorsServiceAbstraction,
+      useClass: FormValidationErrorsService,
     },
   ],
 })

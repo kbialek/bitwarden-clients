@@ -103,7 +103,7 @@ describe("VaultFilter", () => {
     });
 
     describe("given a cipher without folder", () => {
-      const cipher = createCipher({ folderId: undefined });
+      const cipher = createCipher({ folderId: null });
 
       it("should return true when filtering on unassigned folder", () => {
         const filterFunction = createFilterFunction({

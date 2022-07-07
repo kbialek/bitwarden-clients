@@ -5198,5 +5198,8 @@
         "example": "4"
       }
     }
+  },
+  "turnOn": {
+    "message": "Turn on"
   }
 }

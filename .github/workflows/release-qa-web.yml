@@ -48,15 +48,18 @@ jobs:
           az aks install-cli --install-location ./kubectl --kubelogin-install-location ./kubelogin
           echo "---az get-creds---"
           az aks get-credentials -n $_QA_CLUSTER_NAME -g $_QA_CLUSTER_RESOURCE_GROUP
+
       - name: Get image tag
         id: image_tag
         run: |
           IMAGE_TAG=$(echo "${GITHUB_REF:11}" | sed "s#/#-#g")
           TAG_EXTENSION=${{ github.event.inputs.image_extension }}
+
           if [[ $TAG_EXTENSION ]]; then
             IMAGE_TAG=$IMAGE_TAG-$TAG_EXTENSION
           fi
           echo "::set-output name=value::$IMAGE_TAG"
+
       - name: Deploy Web image
         env:
           IMAGE_TAG: ${{ steps.image_tag.outputs.value }}

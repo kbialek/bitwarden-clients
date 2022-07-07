@@ -16,7 +16,6 @@ import { ValidationService } from "../services/validation.service";
 })
 export class ApiActionDirective implements OnChanges {
   @Input() appApiAction: Promise<any>;
-  @Input() loading2 = false;
 
   constructor(
     private el: ElementRef,
@@ -29,19 +28,13 @@ export class ApiActionDirective implements OnChanges {
       return;
     }
 
-    this.loading2 = true;
-
     this.el.nativeElement.loading = true;
 
     this.appApiAction.then(
       (response: any) => {
-        this.loading2 = false;
-
         this.el.nativeElement.loading = false;
       },
       (e: any) => {
-        this.loading2 = false;
-
         this.el.nativeElement.loading = false;
 
         if ((e as ErrorResponse).captchaRequired) {

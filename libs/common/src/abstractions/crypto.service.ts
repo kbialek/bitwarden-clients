@@ -29,7 +29,7 @@ export abstract class CryptoService {
   getOrgKeys: () => Promise<Map<string, SymmetricCryptoKey>>;
   getOrgKey: (orgId: string) => Promise<SymmetricCryptoKey>;
   getProviderKey: (providerId: string) => Promise<SymmetricCryptoKey>;
-  hasKey: () => Promise<boolean>;
+  hasKey: (userId?: string) => Promise<boolean>;
   hasKeyInMemory: (userId?: string) => Promise<boolean>;
   hasKeyStored: (keySuffix?: KeySuffixOptions, userId?: string) => Promise<boolean>;
   hasEncKey: () => Promise<boolean>;

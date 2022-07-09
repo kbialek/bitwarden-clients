@@ -301,11 +301,11 @@ export class CryptoService implements CryptoServiceAbstraction {
     return providerKeys.get(providerId);
   }
 
-  async hasKey(): Promise<boolean> {
+  async hasKey(userId?: string): Promise<boolean> {
     return (
-      (await this.hasKeyInMemory()) ||
-      (await this.hasKeyStored(KeySuffixOptions.Auto)) ||
-      (await this.hasKeyStored(KeySuffixOptions.Biometric))
+      (await this.hasKeyInMemory(userId)) ||
+      (await this.hasKeyStored(KeySuffixOptions.Auto, userId)) ||
+      (await this.hasKeyStored(KeySuffixOptions.Biometric, userId))
     );
   }
 

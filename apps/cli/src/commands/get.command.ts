@@ -3,8 +3,8 @@ import { AuditService } from "@bitwarden/common/abstractions/audit.service";
 import { CipherService } from "@bitwarden/common/abstractions/cipher.service";
 import { CollectionService } from "@bitwarden/common/abstractions/collection.service";
 import { CryptoService } from "@bitwarden/common/abstractions/crypto.service";
-import { FolderService } from "@bitwarden/common/abstractions/folder.service";
-import { OrganizationService } from "@bitwarden/common/abstractions/organization.service";
+import { FolderService } from "@bitwarden/common/abstractions/folder/folder.service.abstraction";
+import { OrganizationService } from "@bitwarden/common/abstractions/organization/organization.service.abstraction";
 import { SearchService } from "@bitwarden/common/abstractions/search.service";
 import { StateService } from "@bitwarden/common/abstractions/state.service";
 import { TotpService } from "@bitwarden/common/abstractions/totp.service";
@@ -358,7 +358,7 @@ export class GetCommand extends DownloadCommand {
         decFolder = await folder.decrypt();
       }
     } else if (id.trim() !== "") {
-      let folders = await this.folderService.getAllDecrypted();
+      let folders = await this.folderService.getAllDecryptedFromState();
       folders = CliUtils.searchFolders(folders, id);
       if (folders.length > 1) {
         return Response.multipleResults(folders.map((f) => f.id));

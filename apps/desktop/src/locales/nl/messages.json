@@ -532,10 +532,13 @@
   "invalidEmail": {
     "message": "Ongeldig e-mailadres."
   },
-  "masterPassRequired": {
+  "masterPasswordRequired": {
     "message": "Hoofdwachtwoord vereist."
   },
-  "masterPassLength": {
+  "confirmMasterPasswordRequired": {
+    "message": "Type je hoofdwachtwoord opnieuw in."
+  },
+  "masterPasswordMinlength": {
     "message": "Het hoofdwachtwoord moet minimaal 8 tekens lang zijn."
   },
   "masterPassDoesntMatch": {
@@ -1296,10 +1299,10 @@
     "description": "hCaptcha is the name of a website, should not be translated"
   },
   "invalidUrl": {
-    "message": "Invalid Url"
+    "message": "Ongeldige URL"
   },
   "done": {
-    "message": "Done"
+    "message": "Klaar"
   },
   "accessibilityCookieSaved": {
     "message": "Accessibility cookie saved!"
@@ -1389,6 +1392,21 @@
   },
   "lockWithMasterPassOnRestart": {
     "message": "Bij herstart vergrendelen met hoofdwachtwoord"
+  },
+  "deleteAccount": {
+    "message": "Account verwijderen"
+  },
+  "deleteAccountDesc": {
+    "message": "Ga hieronder verder om je account en alle bijbehorende gegevens te verwijderen."
+  },
+  "deleteAccountWarning": {
+    "message": "Het verwijderen van je account is definitief. Je kunt dit niet ongedaan maken."
+  },
+  "accountDeleted": {
+    "message": "Account verwijderd"
+  },
+  "accountDeletedDesc": {
+    "message": "Je account is afgesloten en alle bijbehorende gegevens zijn verwijderd."
   },
   "preferences": {
     "message": "Voorkeuren"
@@ -1543,14 +1561,20 @@
   "acceptPolicies": {
     "message": "Door dit vakje aan te vinken, ga je akkoord met het volgende:"
   },
-  "acceptPoliciesError": {
-    "message": "Algemene voorwaarden en privacybeleid zijn nog niet erkend."
+  "acceptPoliciesRequired": {
+    "message": "Je hebt de algemene voorwaarden en het privacybeleid nog niet erkend."
   },
   "enableBrowserIntegration": {
     "message": "Browserintegratie inschakelen"
   },
   "enableBrowserIntegrationDesc": {
     "message": "Browserintegratie wordt gebruikt voor biometrie in de browser."
+  },
+  "enableDuckDuckGoBrowserIntegration": {
+    "message": "Allow DuckDuckGo browser integration"
+  },
+  "enableDuckDuckGoBrowserIntegrationDesc": {
+    "message": "Use your Bitwarden vault when browsing with DuckDuckGo."
   },
   "browserIntegrationUnsupportedTitle": {
     "message": "Browser integration not supported"
@@ -1578,6 +1602,21 @@
   },
   "verifyBrowserDesc": {
     "message": "Verzeker je ervan dat de getoonde vingerafdruk hetzelfde is als de vingerafdruk in de browserextensie."
+  },
+  "verifyNativeMessagingConnectionTitle": {
+    "message": "$APPID$ wants to connect to Bitwarden",
+    "placeholders": {
+      "appid": {
+        "content": "$1",
+        "example": "My App"
+      }
+    }
+  },
+  "verifyNativeMessagingConnectionDesc": {
+    "message": "Would you like to approve this request?"
+  },
+  "verifyNativeMessagingConnectionWarning": {
+    "message": "If you did not initiate this request, do not approve it."
   },
   "biometricsNotEnabledTitle": {
     "message": "Biometrie niet ingeschakeld"
@@ -1952,13 +1991,31 @@
     "message": "Generate an email alias with an external forwarding service."
   },
   "hostname": {
-    "message": "Hostname",
+    "message": "Hostnaam",
     "description": "Part of a URL."
   },
   "apiAccessToken": {
     "message": "API Access Token"
   },
   "apiKey": {
-    "message": "API Key"
+    "message": "API-sleutel"
+  },
+  "premiumSubcriptionRequired": {
+    "message": "Premium-abonnement vereist"
+  },
+  "organizationIsDisabled": {
+    "message": "Organisatie is uitgeschakeld."
+  },
+  "disabledOrganizationFilterError": {
+    "message": "Uitgeschakelde items in een organisatie zijn niet toegankelijk. Neem contact op met de eigenaar van je organisatie voor hulp."
+  },
+  "neverLockWarning": {
+    "message": "Weet je zeker dat je de optie \"Nooit\" wilt gebruiken? De vergrendelingsoptie \"Nooit\" bewaart de sleutel van je kluis op je apparaat. Als je deze optie gebruikt, moet je ervoor zorgen dat je je apparaat naar behoren beschermt."
+  },
+  "cardBrandMir": {
+    "message": "Mir"
+  },
+  "vault": {
+    "message": "Kluis"
   }
 }

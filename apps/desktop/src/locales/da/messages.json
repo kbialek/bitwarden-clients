@@ -532,11 +532,14 @@
   "invalidEmail": {
     "message": "Ugyldig e-mailadresse."
   },
-  "masterPassRequired": {
+  "masterPasswordRequired": {
     "message": "Hovedadgangskode er påkrævet."
   },
-  "masterPassLength": {
-    "message": "Hovedadgangskoden skal være på mindst 8 tegn."
+  "confirmMasterPasswordRequired": {
+    "message": "Hovedadgangskode kræves angivet igen."
+  },
+  "masterPasswordMinlength": {
+    "message": "Hovedadgangskode skal være mindst 8 tegn."
   },
   "masterPassDoesntMatch": {
     "message": "De to adgangskoder matcher ikke."
@@ -1390,6 +1393,21 @@
   "lockWithMasterPassOnRestart": {
     "message": "Lås med hovedadgangskode ved genstart"
   },
+  "deleteAccount": {
+    "message": "Slet konto"
+  },
+  "deleteAccountDesc": {
+    "message": "Fortsæt nedenfor for at slette din konto og alle boks-data."
+  },
+  "deleteAccountWarning": {
+    "message": "Sletning af din konto er permanent. Det kan ikke fortrydes."
+  },
+  "accountDeleted": {
+    "message": "Konto slettet"
+  },
+  "accountDeletedDesc": {
+    "message": "Din konto er blevet lukket, og alle tilknyttede data er blevet slettet."
+  },
   "preferences": {
     "message": "Indstillinger"
   },
@@ -1543,14 +1561,20 @@
   "acceptPolicies": {
     "message": "Ved at markere dette felt accepterer du følgende:"
   },
-  "acceptPoliciesError": {
-    "message": "Servicevilkår og fortrolighedspolitik er ikke blevet bekræftet."
+  "acceptPoliciesRequired": {
+    "message": "Tjenestevilkår og fortrolighedspolitik er ikke blevet accepteret."
   },
   "enableBrowserIntegration": {
     "message": "Tillad browserintegration"
   },
   "enableBrowserIntegrationDesc": {
-    "message": "Browserintegration bruges til biometri i browseren."
+    "message": "Bruges til biometri i browser."
+  },
+  "enableDuckDuckGoBrowserIntegration": {
+    "message": "Allow DuckDuckGo browser integration"
+  },
+  "enableDuckDuckGoBrowserIntegrationDesc": {
+    "message": "Use your Bitwarden vault when browsing with DuckDuckGo."
   },
   "browserIntegrationUnsupportedTitle": {
     "message": "Browserintegration understøttes ikke"
@@ -1578,6 +1602,21 @@
   },
   "verifyBrowserDesc": {
     "message": "Sørg for, at det viste fingeraftryk er identisk med det fingeraftryk, der vises i browserudvidelsen."
+  },
+  "verifyNativeMessagingConnectionTitle": {
+    "message": "$APPID$ wants to connect to Bitwarden",
+    "placeholders": {
+      "appid": {
+        "content": "$1",
+        "example": "My App"
+      }
+    }
+  },
+  "verifyNativeMessagingConnectionDesc": {
+    "message": "Would you like to approve this request?"
+  },
+  "verifyNativeMessagingConnectionWarning": {
+    "message": "If you did not initiate this request, do not approve it."
   },
   "biometricsNotEnabledTitle": {
     "message": "Biometri ikke aktiveret"
@@ -1960,5 +1999,23 @@
   },
   "apiKey": {
     "message": "API-nøgle"
+  },
+  "premiumSubcriptionRequired": {
+    "message": "Premium-abonnement kræves"
+  },
+  "organizationIsDisabled": {
+    "message": "Organisationen er deaktiveret."
+  },
+  "disabledOrganizationFilterError": {
+    "message": "Elementer i deaktiverede organisationer kan ikke tilgås. Kontakt din organisationsejer for at få hjælp."
+  },
+  "neverLockWarning": {
+    "message": "Er du sikker på, at du vil bruge indstillingen \"Aldrig\"? Hvis du sætter dine låseindstillinger til \"Aldrig\" gemmes din boks krypteringsnøgle på din enhed. Hvis du bruger denne indstilling, skal du sikre dig, at du holder din enhed ordentligt beskyttet."
+  },
+  "cardBrandMir": {
+    "message": "Mir"
+  },
+  "vault": {
+    "message": "Boks"
   }
 }

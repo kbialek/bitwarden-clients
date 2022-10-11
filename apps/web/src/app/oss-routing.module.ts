@@ -1,21 +1,25 @@
 import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
+import { Route, RouterModule, Routes } from "@angular/router";
 
 import { AuthGuard } from "@bitwarden/angular/guards/auth.guard";
 import { LockGuard } from "@bitwarden/angular/guards/lock.guard";
 import { UnauthGuard } from "@bitwarden/angular/guards/unauth.guard";
 
+import { flagEnabled, Flags } from "../utils/flags";
+
 import { AcceptEmergencyComponent } from "./accounts/accept-emergency.component";
 import { AcceptOrganizationComponent } from "./accounts/accept-organization.component";
 import { HintComponent } from "./accounts/hint.component";
 import { LockComponent } from "./accounts/lock.component";
-import { LoginComponent } from "./accounts/login.component";
+import { LoginWithDeviceComponent } from "./accounts/login/login-with-device.component";
+import { LoginComponent } from "./accounts/login/login.component";
 import { RecoverDeleteComponent } from "./accounts/recover-delete.component";
 import { RecoverTwoFactorComponent } from "./accounts/recover-two-factor.component";
 import { RegisterComponent } from "./accounts/register.component";
 import { RemovePasswordComponent } from "./accounts/remove-password.component";
 import { SetPasswordComponent } from "./accounts/set-password.component";
 import { SsoComponent } from "./accounts/sso.component";
+import { TrialInitiationComponent } from "./accounts/trial-initiation/trial-initiation.component";
 import { TwoFactorComponent } from "./accounts/two-factor.component";
 import { UpdatePasswordComponent } from "./accounts/update-password.component";
 import { UpdateTempPasswordComponent } from "./accounts/update-temp-password.component";
@@ -24,12 +28,10 @@ import { VerifyRecoverDeleteComponent } from "./accounts/verify-recover-delete.c
 import { HomeGuard } from "./guards/home.guard";
 import { FrontendLayoutComponent } from "./layouts/frontend-layout.component";
 import { UserLayoutComponent } from "./layouts/user-layout.component";
-import { TrialInitiationComponent } from "./modules/trial-initiation/trial-initiation.component";
-import { IndividualVaultModule } from "./modules/vault/modules/individual-vault/individual-vault.module";
 import { OrganizationsRoutingModule } from "./organizations/organization-routing.module";
 import { AcceptFamilySponsorshipComponent } from "./organizations/sponsorships/accept-family-sponsorship.component";
 import { FamiliesForEnterpriseSetupComponent } from "./organizations/sponsorships/families-for-enterprise-setup.component";
-import { ReportsRoutingModule } from "./reports/reports-routing.module";
+import { ReportsModule } from "./reports";
 import { AccessComponent } from "./send/access.component";
 import { SendComponent } from "./send/send.component";
 import { AccountComponent } from "./settings/account.component";
@@ -44,6 +46,7 @@ import { SponsoredFamiliesComponent } from "./settings/sponsored-families.compon
 import { SubscriptionRoutingModule } from "./settings/subscription-routing.module";
 import { GeneratorComponent } from "./tools/generator.component";
 import { ToolsComponent } from "./tools/tools.component";
+import { VaultModule } from "./vault/vault.module";
 
 const routes: Routes = [
   {
@@ -58,6 +61,11 @@ const routes: Routes = [
         canActivate: [HomeGuard], // Redirects either to vault, login or lock page.
       },
       { path: "login", component: LoginComponent, canActivate: [UnauthGuard] },
+      {
+        path: "login-with-device",
+        component: LoginWithDeviceComponent,
+        data: { titleId: "loginWithDevice" },
+      },
       { path: "2fa", component: TwoFactorComponent, canActivate: [UnauthGuard] },
       {
         path: "register",
@@ -65,12 +73,12 @@ const routes: Routes = [
         canActivate: [UnauthGuard],
         data: { titleId: "createAccount" },
       },
-      {
+      buildFlaggedRoute("showTrial", {
         path: "trial",
         component: TrialInitiationComponent,
         canActivate: [UnauthGuard],
         data: { titleId: "startTrial" },
-      },
+      }),
       {
         path: "sso",
         component: SsoComponent,
@@ -160,7 +168,7 @@ const routes: Routes = [
     children: [
       {
         path: "vault",
-        loadChildren: () => IndividualVaultModule,
+        loadChildren: () => VaultModule,
       },
       { path: "sends", component: SendComponent, data: { title: "Send" } },
       {
@@ -236,7 +244,7 @@ const routes: Routes = [
       },
       {
         path: "reports",
-        loadChildren: () => ReportsRoutingModule,
+        loadChildren: () => ReportsModule,
       },
       { path: "setup/families-for-enterprise", component: FamiliesForEnterpriseSetupComponent },
     ],
@@ -258,3 +266,12 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 export class OssRoutingModule {}
+
+export function buildFlaggedRoute(flagName: keyof Flags, route: Route): Route {
+  return flagEnabled(flagName)
+    ? route
+    : {
+        path: route.path,
+        redirectTo: "/",
+      };
+}

@@ -569,11 +569,26 @@
   "loginOrCreateNewAccount": {
     "message": "Inicieu sessió o creeu un compte nou per accedir a la caixa forta."
   },
+  "loginWithDevice": {
+    "message": "Log in with device"
+  },
+  "loginWithDeviceEnabledInfo": {
+    "message": "Log in with device must be enabled in the settings of the Bitwarden mobile app. Need another option?"
+  },
   "createAccount": {
     "message": "Crea un compte"
   },
+  "newAroundHere": {
+    "message": "New around here?"
+  },
+  "startTrial": {
+    "message": "Comença la prova"
+  },
   "logIn": {
     "message": "Inicia sessió"
+  },
+  "logInInitiated": {
+    "message": "Log in initiated"
   },
   "submit": {
     "message": "Envia"
@@ -592,6 +607,9 @@
   },
   "masterPassDesc": {
     "message": "La contrasenya mestra és la clau que utilitzeu per accedir a la vostra caixa forta. És molt important que no la oblideu. No hi ha manera de recuperar-la en cas que la oblideu."
+  },
+  "masterPassImportant": {
+    "message": "Les contrasenyes mestres no es poden recuperar si les oblideu!"
   },
   "masterPassHintDesc": {
     "message": "Una pista de la contrasenya mestra pot ajudar-vos a recordar-la si la oblideu."
@@ -623,17 +641,23 @@
   "invalidEmail": {
     "message": "L’adreça electrònica no és vàlida."
   },
-  "masterPassRequired": {
-    "message": "La contrasenya és obligatòria."
+  "masterPasswordRequired": {
+    "message": "Es requereix la contrasenya mestra."
   },
-  "masterPassLength": {
-    "message": "La contrasenya ha de contenir almenys 8 caràcters."
+  "confirmMasterPasswordRequired": {
+    "message": "Cal tornar a escriure la contrasenya mestra."
+  },
+  "masterPasswordMinlength": {
+    "message": "Master password must be at least 8 characters long."
   },
   "masterPassDoesntMatch": {
     "message": "La confirmació de la contrasenya mestra no coincideix."
   },
   "newAccountCreated": {
     "message": "El vostre compte s'ha creat correctament. Ara ja podeu entrar."
+  },
+  "trialAccountCreated": {
+    "message": "Compte creat amb èxit."
   },
   "masterPassSent": {
     "message": "Hem enviat un correu electrònic amb la vostra contrasenya mestra."
@@ -666,6 +690,9 @@
   "invalidMasterPassword": {
     "message": "Contrasenya mestra no vàlida"
   },
+  "invalidFilePassword": {
+    "message": "La contrasenya del fitxer no és vàlida. Utilitzeu la contrasenya que vau introduir quan vau crear el fitxer d'exportació."
+  },
   "lockNow": {
     "message": "Bloqueja ara"
   },
@@ -689,6 +716,9 @@
   },
   "noOrganizationsList": {
     "message": "No pertanyeu a cap organització. Les organitzacions permeten compartir elements amb altres usuaris de forma segura."
+  },
+  "notificationSentDevice": {
+    "message": "A notification has been sent to your device."
   },
   "versionNumber": {
     "message": "Versió $VERSION_NUMBER$",
@@ -877,6 +907,48 @@
   },
   "fileFormat": {
     "message": "Format de fitxer"
+  },
+  "fileEncryptedExportWarningDesc": {
+    "message": "Aquesta exportació de fitxers estarà protegida amb contrasenya i requerirà la contrasenya del fitxer per desxifrar-la."
+  },
+  "exportPasswordDescription": {
+    "message": "Aquesta contrasenya s'utilitzarà per exportar i importar aquest fitxer"
+  },
+  "confirmMasterPassword": {
+    "message": "Confirma la contrasenya mestra"
+  },
+  "confirmFormat": {
+    "message": "Confirma el format"
+  },
+  "filePassword": {
+    "message": "Contrasenya del fitxer"
+  },
+  "confirmFilePassword": {
+    "message": "Confirma la contrasenya del fitxer"
+  },
+  "accountBackupOptionDescription": {
+    "message": "Utilitzeu la clau de xifratge del vostre compte per xifrar l'exportació i restringir la importació només al compte de Bitwarden actual."
+  },
+  "passwordProtectedOptionDescription": {
+    "message": "Establiu una contrasenya per xifrar l'exportació i importeu-la a qualsevol compte de Bitwarden mitjançant aquesta contrasenya."
+  },
+  "fileTypeHeading": {
+    "message": "Tipus de fitxer"
+  },
+  "accountBackup": {
+    "message": "Còpia de seguretat del compte"
+  },
+  "passwordProtected": {
+    "message": "Protegit amb contrasenya"
+  },
+  "filePasswordAndConfirmFilePasswordDoNotMatch": {
+    "message": "\"Contrasenya del fitxer\" i \"Confirma contrasenya del fitxer\" no coincideixen."
+  },
+  "confirmVaultImport": {
+    "message": "Confirma la importació de la Caixa forta"
+  },
+  "confirmVaultImportDesc": {
+    "message": "Aquest fitxer està protegit amb contrasenya. Introduïu-la per importar dades."
   },
   "exportSuccess": {
     "message": "S'han exportat les dades de la vostra caixa forta."
@@ -1238,8 +1310,8 @@
   "enabled": {
     "message": "Habilitat"
   },
-  "activate": {
-    "message": "Activa"
+  "restoreAccess": {
+    "message": "Restaura l'accés"
   },
   "premium": {
     "message": "Premium",
@@ -1266,8 +1338,8 @@
   "disable": {
     "message": "Inhabilita"
   },
-  "deactivate": {
-    "message": "Desactiva"
+  "revokeAccess": {
+    "message": "Revoca l'accés"
   },
   "twoStepLoginProviderEnabled": {
     "message": "Aquest proveïdor d'inici de sessió en dues passes està habilitat al vostre compte."
@@ -1660,6 +1732,12 @@
   "billing": {
     "message": "Facturació"
   },
+  "billingPlanLabel": {
+    "message": "Pla de facturació"
+  },
+  "paymentType": {
+    "message": "Tipus de pagament"
+  },
   "accountCredit": {
     "message": "Compte de crèdit",
     "description": "Financial term. In the case of Bitwarden, a positive balance means that you owe money, while a negative balance means that you have a credit (Bitwarden owes you money)."
@@ -1776,6 +1854,9 @@
   "year": {
     "message": "any"
   },
+  "yr": {
+    "message": "any"
+  },
   "month": {
     "message": "mes"
   },
@@ -1803,6 +1884,9 @@
   },
   "billingInformation": {
     "message": "Informació de facturació"
+  },
+  "billingTrialSubLabel": {
+    "message": "El vostre mètode de pagament no es cobrarà durant la prova gratuïta de 7 dies."
   },
   "creditCard": {
     "message": "Targeta de crèdit"
@@ -2160,11 +2244,35 @@
       }
     }
   },
+  "trialThankYou": {
+    "message": "Gràcies per registrar-te a Bitwarden per $PLAN$!",
+    "placeholders": {
+      "plan": {
+        "content": "$1",
+        "example": "Teams"
+      }
+    }
+  },
+  "trialPaidInfoMessage": {
+    "message": "La vostra prova gratuïta de $PLAN$ de 7 dies es convertirà en una subscripció de pagament al cap de 7 dies.",
+    "placeholders": {
+      "plan": {
+        "content": "$1",
+        "example": "Teams"
+      }
+    }
+  },
+  "trialConfirmationEmail": {
+    "message": "Hem enviat un correu electrònic de confirmació al correu electrònic de facturació del vostre equip a "
+  },
   "monthly": {
     "message": "Mensual"
   },
   "annually": {
     "message": "Annual"
+  },
+  "annual": {
+    "message": "Anual"
   },
   "basePrice": {
     "message": "Preu base"
@@ -2232,11 +2340,11 @@
   "removeUserConfirmation": {
     "message": "Esteu segur que voleu suprimir aquest usuari?"
   },
-  "deactivateUserConfirmation": {
-    "message": "El membre ja no tindrà accés a l'organització, però encara tindrà accés a la caixa forta individual."
+  "removeOrgUserConfirmation": {
+    "message": "Quan s'elimina un membre, ja no té accés a les dades de l'organització i aquesta acció és irreversible. Per tornar a afegir el membre a l'organització, cal convidar-lo i incorporar-lo de nou."
   },
-  "activateUserConfirmation": {
-    "message": "Confirmeu que voleu activar aquest usuari per concedir-li accés a l'organització?"
+  "revokeUserConfirmation": {
+    "message": "Quan un membre és revocat, ja no té accés a les dades de l'organització. Per restaurar ràpidament l'accés dels membres, aneu a la pestanya Revocat."
   },
   "removeUserConfirmationKeyConnector": {
     "message": "Advertència! Aquest usuari requereix un connector clau per gestionar el seu xifrat. La supressió d'aquest usuari des de la vostra organització desactivarà permanentment el seu compte. Aquesta acció no es pot desfer. Voleu continuar?"
@@ -2439,6 +2547,9 @@
       }
     }
   },
+  "viewAllLoginOptions": {
+    "message": "View all log in options"
+  },
   "viewedItemId": {
     "message": "$ID$ de l'element vist.",
     "placeholders": {
@@ -2583,8 +2694,8 @@
       }
     }
   },
-  "deactivatedUserId": {
-    "message": "Desactivat usuari $ID$.",
+  "removeUserIdAccess": {
+    "message": "Suprimeix l'accés $ID$",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2592,8 +2703,8 @@
       }
     }
   },
-  "activatedUserId": {
-    "message": "Activat usuari $ID$.",
+  "revokedUserId": {
+    "message": "S'ha revocat l'accés a l'organització per $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2601,8 +2712,8 @@
       }
     }
   },
-  "deactivateUserId": {
-    "message": "Vols desactivar l'usuari $ID$?",
+  "restoredUserId": {
+    "message": "S'ha revstaurat l'accés a l'organització per $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2610,8 +2721,8 @@
       }
     }
   },
-  "activateUserId": {
-    "message": "Vols activar l'usuari $ID$?",
+  "revokeUserId": {
+    "message": "S'ha revocat l'accés per $ID$",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3159,7 +3270,7 @@
   "acceptPolicies": {
     "message": "Si activeu aquesta casella, indiqueu que esteu d’acord amb el següent:"
   },
-  "acceptPoliciesError": {
+  "acceptPoliciesRequired": {
     "message": "No s’han reconegut les condicions del servei i la declaració de privadesa."
   },
   "termsOfService": {
@@ -3208,6 +3319,9 @@
   },
   "organizationIsDisabled": {
     "message": "L'organització està inhabilitada."
+  },
+  "disabledOrganizationFilterError": {
+    "message": "No es pot accedir als elements de les organitzacions inhabilitades. Poseu-vos en contacte amb el propietari de la vostra organització per obtenir ajuda."
   },
   "licenseIsExpired": {
     "message": "Llicència caducada."
@@ -3276,6 +3390,12 @@
     "message": "Per assegurar la integritat de les vostres claus de xifratge, comproveu la frase de l'empremta digital de l'usuari abans de continuar.",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
+  "fingerprintMatchInfo": {
+    "message": "Please make sure your vault is unlocked and Fingerprint phrase matches the other device."
+  },
+  "fingerprintPhraseHeader": {
+    "message": "Fingerprint phrase"
+  },
   "dontAskFingerprintAgain": {
     "message": "No sol·liciteu tornar a comprovar la frase de les empremtes dactilars (No recomanat)",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
@@ -3333,14 +3453,20 @@
   "clone": {
     "message": "Clona"
   },
+  "masterPassPolicyTitle": {
+    "message": "Requisits de contrasenya mestra"
+  },
   "masterPassPolicyDesc": {
     "message": "Estableix els requisits mínims per al nivell de seguretat de la contrasenya principal."
+  },
+  "twoStepLoginPolicyTitle": {
+    "message": "Cal iniciar sessió en dos passos"
   },
   "twoStepLoginPolicyDesc": {
     "message": "Requereix que els usuaris configuren l’inici de sessió en dues passes als seus comptes personals."
   },
   "twoStepLoginPolicyWarning": {
-    "message": "Els membres de l’organització que no tinguen activat l’inici de sessió en dues passes per al seu compte personal s'eliminaran de l’organització i rebran un correu electrònic que els notificarà sobre el canvi."
+    "message": "Els membres de l’organització que no tinguen activat l’inici de sessió en dos passos per al seu compte personal s'eliminaran de l’organització i rebran un correu electrònic que els notificarà sobre el canvi."
   },
   "twoStepLoginPolicyUserWarning": {
     "message": "Eres membre d’una organització que necessita l’inici de sessió en dues passes per estar habilitat al vostre compte d’usuari. Si desactiveu tots els proveïdors d’inici de sessió en dues passes, sereu eliminats automàticament d’aquestes organitzacions."
@@ -3666,8 +3792,8 @@
   "disabled": {
     "message": "Inhabilitat"
   },
-  "deactivated": {
-    "message": "Desactivat"
+  "revoked": {
+    "message": "Revocat"
   },
   "sendLink": {
     "message": "Enllaç Send",
@@ -3880,7 +4006,7 @@
     }
   },
   "personalOwnership": {
-    "message": "Propietat personal"
+    "message": "Suprimeix la caixa forta individual"
   },
   "personalOwnershipPolicyDesc": {
     "message": "Sol·liciteu als usuaris que guarden elements de caixa forta a una organització suprimint l’opció de propietat personal."
@@ -3892,10 +4018,10 @@
     "message": "A causa d'una política empresarial, no podeu guardar elements a la vostra caixa forta personal. Canvieu l'opció Propietat en organització i trieu entre les col·leccions disponibles."
   },
   "disableSend": {
-    "message": "Desactiva Send"
+    "message": "Suprimeix Send"
   },
   "disableSendPolicyDesc": {
-    "message": "No permeteu als usuaris crear o editar un Send Bitwarden. Es permet suprimir un Send existent.",
+    "message": "No permeteu als usuaris crear o editar Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "disableSendExemption": {
@@ -3921,7 +4047,7 @@
     "message": "Els usuaris de l’organització que poden gestionar les polítiques d'aquesta, estan exempts de la seua aplicació."
   },
   "disableHideEmail": {
-    "message": "No permeteu que els usuaris amaguen la seua adreça de correu electrònic dels destinataris en crear o editar un Send.",
+    "message": "Mostra sempre l'adreça de correu electrònic del membre amb els destinataris quan creeu o editeu un Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsPolicyInEffect": {
@@ -3954,6 +4080,12 @@
   },
   "permissions": {
     "message": "Permisos"
+  },
+  "managerPermissions": {
+    "message": "Permisos de l'administrador"
+  },
+  "adminPermissions": {
+    "message": "Permisos de l'administrador"
   },
   "accessEventLogs": {
     "message": "Registres d'esdeveniments dels accessos"
@@ -4264,17 +4396,20 @@
   "reinviteSelected": {
     "message": "Tornar a enviar invitacions"
   },
+  "resendNotification": {
+    "message": "Resend notification"
+  },
   "noSelectedUsersApplicable": {
     "message": "Aquesta acció no és aplicable a cap dels usuaris seleccionats."
   },
   "removeUsersWarning": {
     "message": "Esteu segur que voleu eliminar els usuaris següents? El procés pot tardar uns segons a completar-se i no es pot interrompre ni cancel·lar."
   },
-  "deactivateUsersWarning": {
-    "message": "Esteu segur que voleu desactivar els membres següents? Ja no tindran accés a l'organització, però encara tindran accés a les seues caixes fortes individuals. El procés pot tardar uns quants segons a completar-se i no es pot interrompre ni cancel·lar."
+  "removeOrgUsersConfirmation": {
+    "message": "Quan se suprimeixen els membres, ja no tenen accés a les dades de l'organització i aquesta acció és irreversible. Per tornar a afegir el membre a l'organització, cal convidar-lo i incorporar-lo de nou. El procés pot tardar uns quants segons a completar-se i no es pot interrompre ni cancel·lar."
   },
-  "activateUsersWarning": {
-    "message": "Esteu segur que voleu activar els membres següents, donant-los accés a l'organització? El procés pot tardaruns quants segons a completar-se i no es pot interrompre ni cancel·lar."
+  "revokeUsersWarning": {
+    "message": "Quan els membres són revocats, ja no tenen accés a les dades de l'organització. Per restaurar ràpidament l'accés dels membres, aneu a la pestanya Revocat. El procés pot tardar uns quants segons a completar-se i no es pot interrompre ni cancel·lar."
   },
   "theme": {
     "message": "Tema"
@@ -4306,11 +4441,11 @@
   "bulkRemovedMessage": {
     "message": "Suprimit correctament"
   },
-  "bulkDeactivatedMessage": {
-    "message": "Desactivat correctament"
+  "bulkRevokedMessage": {
+    "message": "S'ha revocat l'accés a l'organització correctament"
   },
-  "bulkActivatedMessage": {
-    "message": "Activat correctament"
+  "bulkRestoredMessage": {
+    "message": "S'ha restaurat l'accés a l'organització correctament"
   },
   "bulkFilteredMessage": {
     "message": "Exclòs, no aplicable per a aquesta acció."
@@ -4321,11 +4456,11 @@
   "removeUsers": {
     "message": "Suprimeix usuaris"
   },
-  "deactivateUsers": {
-    "message": "Desactiva usuaris"
+  "revokeUsers": {
+    "message": "Revoca usuaris"
   },
-  "activateUsers": {
-    "message": "Activa usuaris"
+  "restoreUsers": {
+    "message": "Restaura usuaris"
   },
   "error": {
     "message": "Error"
@@ -4737,9 +4872,6 @@
   "sponsorshipCreated": {
     "message": "S'ha creat un patrocini"
   },
-  "revoke": {
-    "message": "Revoca"
-  },
   "emailSent": {
     "message": "Correu electrònic enviat"
   },
@@ -4802,18 +4934,18 @@
   },
   "ssoPolicyHelpStart": {
     "message": "Habilita la",
-    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Use the require single-sign-on authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpLink": {
     "message": "Política d'autenticació SSO",
-    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Use the require single-sign-on authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpEnd": {
     "message": "per obligar que tots els membres inicien la sessió amb SSO.",
-    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Use the require single-sign-on authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpKeyConnector": {
-    "message": "Les polítiques d'autenticació SSO i d'organització única són necessàries per configurar el desxifrat del connector de claus."
+    "message": "Es requereix l'autenticació SSO i les polítiques d'organització única per configurar el desxifrat del connector de claus."
   },
   "memberDecryptionOption": {
     "message": "Opcions de desxifrat de membres"
@@ -5165,5 +5297,98 @@
         "example": "My Email"
       }
     }
+  },
+  "premiumSubcriptionRequired": {
+    "message": "Cal una subscripció premium"
+  },
+  "scim": {
+    "message": "Aprovisionament SCIM",
+    "description": "The text, 'SCIM', is an acronymn and should not be translated."
+  },
+  "scimDescription": {
+    "message": "Proporcioneu automàticament usuaris i grups amb el vostre proveïdor d'identitat preferit mitjançant el subministrament SCIM",
+    "description": "the text, 'SCIM', is an acronymn and should not be translated."
+  },
+  "scimEnabledCheckboxDesc": {
+    "message": "Habilita SCIM",
+    "description": "the text, 'SCIM', is an acronymn and should not be translated."
+  },
+  "scimEnabledCheckboxDescHelpText": {
+    "message": "Configureu el vostre proveïdor d'identitat preferit configurant l'URL i la clau de l'API SCIM",
+    "description": "the text, 'SCIM', is an acronymn and should not be translated."
+  },
+  "scimApiKeyHelperText": {
+    "message": "Aquesta clau d'API té accés per gestionar els usuaris de la vostra organització. S'ha de mantenir en secret."
+  },
+  "copyScimKey": {
+    "message": "Copieu la clau de l'API SCIM al porta-retalls",
+    "description": "the text, 'SCIM' and 'API', are acronymns and should not be translated."
+  },
+  "rotateScimKey": {
+    "message": "Gira la clau de l'API SCIM",
+    "description": "the text, 'SCIM' and 'API', are acronymns and should not be translated."
+  },
+  "rotateScimKeyWarning": {
+    "message": "Esteu segur que voleu girar la clau de l'API SCIM? La clau actual ja no funcionarà per a cap integració existent.",
+    "description": "the text, 'SCIM' and 'API', are acronymns and should not be translated."
+  },
+  "rotateKey": {
+    "message": "Gira la clau"
+  },
+  "scimApiKey": {
+    "message": "Gira la clau de l'API SCIM",
+    "description": "the text, 'SCIM' and 'API', are acronymns and should not be translated."
+  },
+  "copyScimUrl": {
+    "message": "Copia l'URL del punt final d'SCIM al porta-retalls",
+    "description": "the text, 'SCIM' and 'URL', are acronymns and should not be translated."
+  },
+  "scimUrl": {
+    "message": "URL d'SCIM",
+    "description": "the text, 'SCIM' and 'URL', are acronymns and should not be translated."
+  },
+  "scimApiKeyRotated": {
+    "message": "La clau de l'API SCIM s'ha girat correctament",
+    "description": "the text, 'SCIM' and 'API', are acronymns and should not be translated."
+  },
+  "scimSettingsSaved": {
+    "message": "La configuració de SCIM s'ha guardat correctament",
+    "description": "the text, 'SCIM', is an acronymn and should not be translated."
+  },
+  "inputRequired": {
+    "message": "Es requereix una entrada."
+  },
+  "inputEmail": {
+    "message": "L'entrada no és una adreça de correu electrònic."
+  },
+  "inputMinLength": {
+    "message": "L'entrada ha de tenir com a mínim $COUNT$ caràcters.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "fieldsNeedAttention": {
+    "message": "$COUNT$ camps de dalt necessiten la vostra atenció.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "4"
+      }
+    }
+  },
+  "turnOn": {
+    "message": "Activa"
+  },
+  "on": {
+    "message": "Activat"
+  },
+  "cardBrandMir": {
+    "message": "Mir"
+  },
+  "numberOfUsers": {
+    "message": "Nombre d'usuaris"
   }
 }

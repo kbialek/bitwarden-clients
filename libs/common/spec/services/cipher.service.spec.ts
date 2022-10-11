@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-restricted-imports
 import { Arg, Substitute, SubstituteOf } from "@fluffy-spoon/substitute";
 
 import { ApiService } from "@bitwarden/common/abstractions/api.service";
@@ -8,7 +9,6 @@ import { LogService } from "@bitwarden/common/abstractions/log.service";
 import { SearchService } from "@bitwarden/common/abstractions/search.service";
 import { SettingsService } from "@bitwarden/common/abstractions/settings.service";
 import { StateService } from "@bitwarden/common/abstractions/state.service";
-import { Utils } from "@bitwarden/common/misc/utils";
 import { Cipher } from "@bitwarden/common/models/domain/cipher";
 import { EncArrayBuffer } from "@bitwarden/common/models/domain/encArrayBuffer";
 import { EncString } from "@bitwarden/common/models/domain/encString";
@@ -16,7 +16,7 @@ import { SymmetricCryptoKey } from "@bitwarden/common/models/domain/symmetricCry
 import { CipherService } from "@bitwarden/common/services/cipher.service";
 
 const ENCRYPTED_TEXT = "This data has been encrypted";
-const ENCRYPTED_BYTES = new EncArrayBuffer(Utils.fromUtf8ToArray(ENCRYPTED_TEXT).buffer);
+const ENCRYPTED_BYTES = Substitute.for<EncArrayBuffer>();
 
 describe("Cipher Service", () => {
   let cryptoService: SubstituteOf<CryptoService>;
